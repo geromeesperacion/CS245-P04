@@ -23,12 +23,17 @@ public class Practice4Test {
 		}
 	}
 	
-	
+	//edited to ignore case, space, and punctuation (exclamation, period, comma, or question mark)
 	public boolean isPalindrome(String item) {
 		clearData();
 		for (int i = 0; i < item.length(); i++) {
-			stack.push(item.substring(i, i+1));
-			queue.enqueue(item.substring(i, i+1));
+			//checks for punctuation - if found, do not include
+			if(!item.substring(i, i+1).equals(" ") && !item.substring(i, i+1).equals("!") && !item.substring(i, i+1).equals(".")
+				&& !item.substring(i, i+1).equals(",") && !item.substring(i, i+1).equals("?")) {
+					//adds substring to stack and queue, but ignores case
+					stack.push(item.substring(i, i+1).toLowerCase());
+					queue.enqueue(item.substring(i, i+1).toLowerCase());
+			}
 		}
 
 		while (! stack.empty() && ! queue.empty()) {
